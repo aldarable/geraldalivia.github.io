@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Geralda Livia Nugraha — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Source+Serif+4:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafaf9;
+    --surface: #ffffff;
+    --ink: #1c1c1a;
+    --ink-soft: #55554f;
+    --line: #e4e2dd;
+    --accent: #5b7a8c;
+    --accent-soft: #eef2f3;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #131311;
+      --surface: #1a1a17;
+      --ink: #f2f1ec;
+      --ink-soft: #b7b5ac;
+      --line: #2d2d28;
+      --accent: #8fb4c7;
+      --accent-soft: #1f2b2f;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #131311;
+    --surface: #1a1a17;
+    --ink: #f2f1ec;
+    --ink-soft: #b7b5ac;
+    --line: #2d2d28;
+    --accent: #8fb4c7;
+    --accent-soft: #1f2b2f;
+  }
+  html { scroll-behavior: smooth; scroll-padding-top: env(safe-area-inset-top, 0px); }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  .wrap {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    max-width: 980px; margin: 0 auto; padding: 16px 28px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-name { font-weight: 800; letter-spacing: 0.02em; font-size: 15px; }
+  .nav-links { display: flex; gap: 22px; font-size: 14px; font-weight: 600; color: var(--ink-soft); }
+  .nav-links a { color: var(--ink-soft); }
+  .nav-links a:hover { color: var(--accent); text-decoration: none; }
+  @media (max-width: 640px) { .nav-links { gap: 14px; font-size: 12.5px; } }
+
+  /* HERO */
+  .hero {
+    padding: 96px 0 72px;
+    display: grid;
+    grid-template-columns: 1.3fr 0.9fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .eyebrow {
+    text-transform: uppercase; letter-spacing: 0.16em; font-size: 12.5px;
+    font-weight: 700; color: var(--accent); margin-bottom: 18px;
+  }
+  .eyebrow::before { content: "— "; }
+  h1 {
+    font-family: 'Source Serif 4', serif;
+    font-size: clamp(34px, 5vw, 54px);
+    line-height: 1.08; font-weight: 500; margin: 0 0 20px;
+    letter-spacing: -0.01em;
+  }
+  h1 em { font-style: italic; color: var(--accent); }
+  .lede { font-size: 17px; color: var(--ink-soft); max-width: 46ch; margin: 0 0 28px; }
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 11px 20px; border-radius: 999px; font-size: 14px; font-weight: 700;
+    border: 1px solid var(--ink); color: var(--ink);
+  }
+  .btn:hover { text-decoration: none; background: var(--ink); color: var(--bg); }
+  .btn.solid { background: var(--ink); color: var(--bg); }
+  .btn.solid:hover { background: var(--accent); border-color: var(--accent); }
+  .hero-photo {
+    aspect-ratio: 3/4; border-radius: 14px; overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+  @media (max-width: 760px) {
+    .hero { grid-template-columns: 1fr; padding-top: 64px; text-align: left; }
+    .hero-photo { max-width: 240px; }
+  }
+
+  section { padding: 64px 0; border-top: 1px solid var(--line); }
+  .section-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 34px; gap: 16px; flex-wrap: wrap; }
+  .section-label { text-transform: uppercase; letter-spacing: 0.14em; font-size: 12px; font-weight: 700; color: var(--accent); }
+  h2 { font-family: 'Source Serif 4', serif; font-weight: 500; font-size: clamp(24px, 3.4vw, 32px); margin: 4px 0 0; }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 48px; align-items: start; }
+  .about-photo { border-radius: 14px; overflow: hidden; border: 1px solid var(--line); }
+  .about-photo img { width: 100%; object-fit: cover; }
+  .about-text p { color: var(--ink-soft); font-size: 15.5px; margin: 0 0 16px; }
+  .about-text strong { color: var(--ink); font-weight: 700; }
+  .focus-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .tag {
+    font-size: 12.5px; font-weight: 600; padding: 7px 13px; border-radius: 999px;
+    background: var(--accent-soft); color: var(--accent);
+  }
+  @media (max-width: 760px) { .about-grid { grid-template-columns: 1fr; } .about-photo { max-width: 260px; } }
+
+  /* EXPERIENCE */
+  .xp-item { padding: 22px 0; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 200px 1fr; gap: 24px; }
+  .xp-item:last-child { border-bottom: none; }
+  .xp-meta { font-size: 13px; color: var(--ink-soft); font-weight: 600; }
+  .xp-role { font-weight: 700; font-size: 16px; margin: 0 0 4px; }
+  .xp-org { color: var(--accent); font-weight: 600; font-size: 14px; margin-bottom: 10px; }
+  .xp-item ul { margin: 0; padding-left: 18px; color: var(--ink-soft); font-size: 14.5px; }
+  .xp-item li { margin-bottom: 6px; }
+  @media (max-width: 640px) { .xp-item { grid-template-columns: 1fr; gap: 6px; } }
+
+  /* PROJECTS FEATURED */
+  .proj-feature {
+    display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 36px;
+    padding: 36px 0; border-bottom: 1px solid var(--line); align-items: center;
+  }
+  .proj-feature:last-child { border-bottom: none; }
+  .proj-feature:nth-child(even) .proj-photo { order: 2; }
+  .proj-photo { border-radius: 14px; overflow: hidden; border: 1px solid var(--line); }
+  .proj-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .proj-index { font-size: 12.5px; color: var(--accent); font-weight: 700; letter-spacing: 0.08em; margin-bottom: 8px; }
+  .proj-title { font-size: 20px; font-weight: 700; margin: 0 0 4px; }
+  .proj-year { font-size: 13px; color: var(--ink-soft); margin-bottom: 12px; }
+  .proj-desc { color: var(--ink-soft); font-size: 14.5px; margin-bottom: 14px; }
+  .proj-list { margin: 0; padding-left: 18px; color: var(--ink-soft); font-size: 14px; }
+  .proj-list li { margin-bottom: 5px; }
+  .proj-stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  .chip { font-size: 11.5px; font-weight: 600; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--line); color: var(--ink-soft); }
+  @media (max-width: 760px) {
+    .proj-feature { grid-template-columns: 1fr; }
+    .proj-feature:nth-child(even) .proj-photo { order: 0; }
+  }
+
+  /* MORE PROJECTS GRID */
+  .more-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .more-card {
+    border: 1px solid var(--line); border-radius: 12px; padding: 20px;
+    background: var(--surface);
+  }
+  .more-card h4 { margin: 0 0 6px; font-size: 15px; }
+  .more-card p { margin: 0; font-size: 13px; color: var(--ink-soft); }
+  .more-card .yr { font-size: 11.5px; color: var(--accent); font-weight: 700; margin-bottom: 6px; }
+  @media (max-width: 760px) { .more-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 480px) { .more-grid { grid-template-columns: 1fr; } }
+
+  /* SKILLS / CERTS */
+  .cols-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .skill-block h4 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin: 0 0 10px; }
+  .skill-block p { font-size: 14.5px; color: var(--ink-soft); margin: 0 0 22px; }
+  .cert-list { list-style: none; margin: 0; padding: 0; font-size: 14px; color: var(--ink-soft); }
+  .cert-list li { padding: 9px 0; border-bottom: 1px solid var(--line); }
+  .cert-list li:last-child { border-bottom: none; }
+  @media (max-width: 640px) { .cols-2 { grid-template-columns: 1fr; gap: 8px; } }
+
+  /* CONTACT / FOOTER */
+  .contact-box {
+    text-align: center; padding: 72px 0 88px;
+  }
+  .contact-box h2 { margin-bottom: 14px; }
+  .contact-box p { color: var(--ink-soft); max-width: 42ch; margin: 0 auto 28px; }
+  .contact-links { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+  footer {
+    text-align: center; padding: 26px 0; font-size: 12.5px; color: var(--ink-soft); border-top: 1px solid var(--line);
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-name">GERALDA LIVIA NUGRAHA</div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero" style="border-top:none;">
+    <div>
+      <div class="eyebrow">Mechatronics &amp; AI Graduate</div>
+      <h1>Building reliable systems at the edge of <em>engineering, data, and automation.</em></h1>
+      <p class="lede">I work across network monitoring, control systems, and data-driven engineering — turning raw sensor data and CAD models into dashboards, predictions, and working prototypes.</p>
+      <div class="hero-actions">
+        <a class="btn solid" href="#projects">View Projects</a>
+        <a class="btn" href="#contact">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="assets/hero.jpg" alt="Geralda Livia Nugraha">
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-head">
+      <div><div class="section-label">Who I Am</div><h2>About Me</h2></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-photo"><img src="assets/about.jpg" alt="Geralda at work"></div>
+      <div class="about-text">
+        <p><strong>Mechatronics and AI graduate</strong> working at the intersection of control systems, IoT, and engineering data. My background spans mechanical design, 3D modeling, and system optimization — shaped through internships at DCI Indonesia, Pasifik Satelit Nusantara, and Komatsu Undercarriage Indonesia.</p>
+        <p>I'm most interested in <strong>control &amp; automation systems, IoT-based monitoring, data-driven optimization, and networked engineering solutions</strong> — with a focus on building systems that are reliable, efficient, and practical in real-world use, including data center and network operations contexts.</p>
+        <div class="focus-tags">
+          <span class="tag">Network &amp; NOC Monitoring</span>
+          <span class="tag">SNMP / PRTG</span>
+          <span class="tag">Project Documentation</span>
+          <span class="tag">3D Design (SolidWorks, UG/NX, AutoCAD)</span>
+          <span class="tag">Machine Learning</span>
+          <span class="tag">Power BI</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-head">
+      <div><div class="section-label">Where I've Worked</div><h2>Experience</h2></div>
+    </div>
+
+    <div class="xp-item">
+      <div class="xp-meta">Jun 2026 – Present<br>Cibitung, Indonesia</div>
+      <div>
+        <div class="xp-role">Process Engineer Intern — Project Document Control</div>
+        <div class="xp-org">DCI Indonesia</div>
+        <ul>
+          <li>Develop automated project monitoring dashboards that streamline document control and reporting workflows.</li>
+          <li>Maintain project documentation, version control, and S-Curve progress tracking across the project lifecycle.</li>
+          <li>Coordinate with vendors and cross-functional teams to keep deliverables on schedule.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="xp-item">
+      <div class="xp-meta">Oct 2024<br>Cikarang, Indonesia</div>
+      <div>
+        <div class="xp-role">Intern, Research &amp; Development</div>
+        <div class="xp-org">Pasifik Satelit Nusantara (PSN)</div>
+        <ul>
+          <li>Designed and modeled a mini antenna in 3D using UG/NX and SolidWorks for satellite communication testing.</li>
+          <li>Documented and shared the 3D workflow with the team, enabling faster prototyping.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="xp-item">
+      <div class="xp-meta">Oct 2024 – Feb 2025<br>Cikarang, Indonesia</div>
+      <div>
+        <div class="xp-role">Intern, Network Development &amp; Testing</div>
+        <div class="xp-org">Pasifik Satelit Nusantara (PSN)</div>
+        <ul>
+          <li>Implemented an SNMP-based monitoring system with an Orange Pi mini-PC, integrating multi-sensor parameters into a real-time PRTG dashboard; improved data reliability from 68% to 98% (~30% reduction in data loss).</li>
+          <li>Built predictive models (Logistic Regression &amp; Random Forest) for downtime forecasting and validated performance for continuous 24/7 operation.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="xp-item">
+      <div class="xp-meta">Feb 2024 – Jun 2024<br>Cikarang, Indonesia</div>
+      <div>
+        <div class="xp-role">Intern, Engineering Development</div>
+        <div class="xp-org">Komatsu Undercarriage Indonesia</div>
+        <ul>
+          <li>Proposed design concepts for Water Treatment Plant (WTP) improvements focused on efficiency and sustainability.</li>
+          <li>Built dashboard mockups in Figma and a Power BI prototype for real-time water usage monitoring.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-head">
+      <div><div class="section-label">Selected Work</div><h2>Featured Projects</h2></div>
+    </div>
+
+    <div class="proj-feature">
+      <div class="proj-photo"><img src="assets/project-solar-monitoring.jpg" alt="Presenting the SNMP downtime prediction project"></div>
+      <div>
+        <div class="proj-index">01 — Research Project · 2025</div>
+        <div class="proj-title">Monitoring &amp; Downtime Prediction for Solar-Powered Modems</div>
+        <p class="proj-desc">Built a system to monitor solar-powered modems by integrating environmental and electrical sensors with SNMP, improving data reliability from 68% to 98% and enabling real-time visualization and downtime forecasting.</p>
+        <ul class="proj-list">
+          <li>Designed and implemented the software–hardware integration and SNMP data pipeline into PRTG Network Monitor.</li>
+          <li>Built predictive models (Logistic Regression &amp; Random Forest) for downtime forecasting.</li>
+          <li>Tested and validated system reliability under real-time operating conditions.</li>
+        </ul>
+        <div class="proj-stack"><span class="chip">SNMP</span><span class="chip">PRTG</span><span class="chip">Python</span><span class="chip">Logistic Regression</span><span class="chip">Random Forest</span></div>
+      </div>
+    </div>
+
+    <div class="proj-feature">
+      <div class="proj-photo"><img src="assets/project-guiding-block.jpg" alt="Guiding block trackstick assistive device demo"></div>
+      <div>
+        <div class="proj-index">02 — Assistive Technology · 2024</div>
+        <div class="proj-title">Guiding Block Trackstick Device</div>
+        <p class="proj-desc">An assistive device to support blind people in mobility by integrating IoT, machine learning, and sensors — predicting walking paths (guiding block vs. regular road) via a CNN model, displayed through a companion WebApp.</p>
+        <ul class="proj-list">
+          <li>Developed a CNN deep learning model to classify walking paths.</li>
+          <li>Implemented ESP32-Cam for data collection, integrated with an IoT platform.</li>
+          <li>Built a WebApp prototype for real-time monitoring and user interaction.</li>
+        </ul>
+        <div class="proj-stack"><span class="chip">CNN</span><span class="chip">ESP32-Cam</span><span class="chip">IoT</span><span class="chip">Flask</span></div>
+      </div>
+    </div>
+
+    <div class="proj-feature">
+      <div class="proj-photo"><img src="assets/project-bloodconnect.jpg" alt="BloodConnect app screenshot"></div>
+      <div>
+        <div class="proj-index">03 — Capstone · Team Lead · 2025</div>
+        <div class="proj-title">BloodConnect: Real-Time Blood Donation Platform</div>
+        <p class="proj-desc">A web platform connecting donors, hospitals, and blood banks in real time — using machine learning for donor prediction, a chatbot, and location-based recommendations to address urgent blood shortages. Selected Top 20 of 398 capstone teams.</p>
+        <ul class="proj-list">
+          <li>Acted as Team Leader &amp; Project Manager, coordinating schedules and task allocation.</li>
+          <li>Built a lightweight TF-IDF FAQ chatbot as ML Developer and integrated it into the web app.</li>
+          <li>Aligned ML models with front-end/back-end teams for deployment.</li>
+        </ul>
+        <div class="proj-stack"><span class="chip">Machine Learning</span><span class="chip">TF-IDF</span><span class="chip">Project Management</span></div>
+      </div>
+    </div>
+
+    <div class="proj-feature">
+      <div class="proj-photo"><img src="assets/project-wtp.jpg" alt="Presenting the Water Treatment Plant project at Komatsu"></div>
+      <div>
+        <div class="proj-index">04 — Engineering Internship · 2024</div>
+        <div class="proj-title">Water Treatment Plant Optimization</div>
+        <p class="proj-desc">Developed a conceptual design for a Water Treatment Plant at Komatsu Undercarriage Indonesia, focused on efficiency and sustainability, paired with a data-driven monitoring dashboard.</p>
+        <ul class="proj-list">
+          <li>Created 3D models and technical drawings using UG/NX and AutoCAD.</li>
+          <li>Designed dashboard mockups in Figma and a Power BI prototype for water usage monitoring.</li>
+          <li>Managed end-to-end data workflows for standardized, reusable dashboards across teams.</li>
+        </ul>
+        <div class="proj-stack"><span class="chip">UG/NX</span><span class="chip">AutoCAD</span><span class="chip">Power BI</span><span class="chip">Figma</span></div>
+      </div>
+    </div>
+
+    <div class="section-head" style="margin-top:52px;">
+      <div><div class="section-label">More Work</div><h2>Additional Projects</h2></div>
+    </div>
+    <div class="more-grid">
+      <div class="more-card">
+        <div class="yr">2022</div>
+        <h4>Speedboat Design &amp; Analysis</h4>
+        <p>Full hull and structural frame designed in AutoCAD 2D/3D with assembly drawings and BOM.</p>
+      </div>
+      <div class="more-card">
+        <div class="yr">2022</div>
+        <h4>Logistik PastiSampai</h4>
+        <p>Python + SQL CRUD package-tracking system with schema design for data integrity.</p>
+      </div>
+      <div class="more-card">
+        <div class="yr">2023</div>
+        <h4>Redesign: SPOT UPI</h4>
+        <p>UI/UX redesign of a university e-learning portal — wireframes and hi-fi prototypes in Figma.</p>
+      </div>
+      <div class="more-card">
+        <div class="yr">2023</div>
+        <h4>Self-Balancing Robot (ESP32)</h4>
+        <p>Inverted-pendulum balancing robot; mechanical design in AutoCAD, control logic in Arduino.</p>
+      </div>
+      <div class="more-card">
+        <div class="yr">2023</div>
+        <h4>Adventure Snakes &amp; Ladders</h4>
+        <p>Role-based board game; designed the data storage layer for scores, sessions, and progress.</p>
+      </div>
+      <div class="more-card">
+        <div class="yr">2024–25</div>
+        <h4>ML Explorations</h4>
+        <p>Satellite image classification (CNN), NLP sentiment analysis, and a PM10 air-quality dashboard.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-head">
+      <div><div class="section-label">Toolkit</div><h2>Skills &amp; Credentials</h2></div>
+    </div>
+    <div class="cols-2">
+      <div>
+        <div class="skill-block">
+          <h4>Engineering &amp; Design</h4>
+          <p>SolidWorks, AutoCAD, UG/NX, PLC Programming, Hydraulic &amp; Pneumatic Systems, MATLAB, Arduino</p>
+        </div>
+        <div class="skill-block">
+          <h4>Data &amp; Network</h4>
+          <p>SNMP, PRTG Network Monitor, Power BI, Python, SQL, Machine Learning, Network Monitoring &amp; NOC Support</p>
+        </div>
+        <div class="skill-block">
+          <h4>Languages</h4>
+          <p>Bahasa Indonesia (Native), English (Upper Intermediate)</p>
+        </div>
+      </div>
+      <div>
+        <h4 style="font-size:13px; text-transform:uppercase; letter-spacing:0.08em; color:var(--accent); margin:0 0 10px;">Certifications</h4>
+        <ul class="cert-list">
+          <li>Machine Learning Engineer — Coding Camp by DBS Foundation (2025)</li>
+          <li>Top 20 Capstone Project — Coding Camp by DBS Foundation (2025)</li>
+          <li>English for Business Communication (2025)</li>
+          <li>PTESOL — Proficiency Test of English (Score 483) (2025)</li>
+          <li>IC3 Digital Literacy Certification — Certiport (2023)</li>
+          <li>Mini Bootcamp — Ardumeka (2023)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact-box">
+    <div class="section-label" style="justify-content:center; display:flex;">Let's Collaborate</div>
+    <h2>Get in Touch</h2>
+    <p>Open to opportunities in data center operations, project engineering, and network/systems development.</p>
+    <div class="contact-links">
+      <a class="btn solid" href="mailto:hey.geralda@gmail.com">Email Me</a>
+      <a class="btn" href="https://www.linkedin.com/in/geraldalivia" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://github.com/geraldalivia" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </section>
+
+</div>
+
+<footer>Bekasi, Indonesia · +62 852 1258 1811 · © 2026 Geralda Livia Nugraha</footer>
+
+</body>
+</html>
